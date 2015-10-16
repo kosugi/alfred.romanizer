@@ -18,6 +18,8 @@ class HepbernTestCase(unittest.TestCase):
         self.assertEqual(u'nnnnnn', to_hepburn(u'んんんンンン'))
         self.assertEqual(u'oi toru onishi', to_hepburn(u'おーい とおる おおにし'))
         self.assertEqual(u"shinichi", to_hepburn(u'シンイチ'))
+        self.assertEqual(u'shonin', to_hepburn(u'しょーにん'))
+        self.assertEqual(u'joho', to_hepburn(u'じょうほう'))
 
     def test_kunrei(self):
         self.assertEqual(u'', to_kunrei(u''))
@@ -26,12 +28,14 @@ class HepbernTestCase(unittest.TestCase):
         self.assertEqual(u'tinpui', to_kunrei(u'チンプイ'))
         self.assertEqual(u'banpuobutikin', to_kunrei(u'バンプオブチキン'))
         self.assertEqual(u'kanda', to_kunrei(u'かんだ'))
-        self.assertEqual(u'bouzuga zyouzuni byoubuni bouzuno ewokaita', to_kunrei(u'ボウズガ ジョウズニ ビョウブニ ボウズノ エヲカイタ'))
+        self.assertEqual(u'bôzuga zyôzuni byôbuni bôzuno ewokaita', to_kunrei(u'ボウズガ ジョウズニ ビョウブニ ボウズノ エヲカイタ'))
         self.assertEqual(u'beppu', to_kunrei(u'べっぷ'))
         self.assertEqual(u'kotti', to_kunrei(u'コッチ'))
         self.assertEqual(u'nnnnnn', to_kunrei(u'んんんンンン'))
-        self.assertEqual(u'ôi tooru oonisi', to_kunrei(u'おーい とおる おおにし'))
+        self.assertEqual(u'ôi tôru ônisi', to_kunrei(u'おーい とおる おおにし'))
         self.assertEqual(u"sin'iti", to_kunrei(u'シンイチ'))
+        self.assertEqual(u'syônin', to_kunrei(u'しょーにん'))
+        self.assertEqual(u'zyôhô', to_kunrei(u'じょうほう'))
 
 if __name__ == '__main__':
     unittest.main()

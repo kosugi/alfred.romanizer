@@ -6,11 +6,6 @@ basic_table = dict(map(lambda s: s.split(u'\t'), u'''
 う	u
 え	e
 お	o
-あー	â
-いー	î
-うー	û
-えー	ê
-おー	ô
 か	ka
 き	ki
 く	ku
@@ -124,11 +119,6 @@ basic_table = dict(map(lambda s: s.split(u'\t'), u'''
 ウ	u
 エ	e
 オ	o
-アー	â
-イー	î
-ウー	û
-エー	ê
-オー	ô
 カ	ka
 キ	ki
 ク	ku
@@ -239,6 +229,9 @@ basic_table = dict(map(lambda s: s.split(u'\t'), u'''
 ぐゎ	gwa
 '''.strip(u'\n').split(u'\n')))
 
+long_sound_table = dict(u'aâ iî uû eê oô'.split())
+long_sounds = u'aa ii uu ee oo ou'.split()
+
 def normalize(s):
     roman = u''
     l = len(s)
@@ -247,15 +240,22 @@ def normalize(s):
         c1 = s[n]
         c2 = s[n:n+2]
         c3 = s[n+1:n+2]
-        if c1 in u'んン':
-            c1 = 'n'
+        if roman and c1 == u'ー':
+            c1 = u''
+            if roman[-1] in u'aiueo':
+                roman = roman[:-1] + long_sound_table[roman[-1]]
+        elif c2 in long_sounds:
+            c1 = long_sound_table[c1]
+            n += 1
+        elif c1 in u'んン':
+            c1 = u'n'
             if c3 and c3 in u'aiueoy':
-                c1 += "'"
+                c1 += u"'"
         elif c1 in u'っッ':
             if c3 in u'bcdfghjklmnpqrstvwxyz':
                 c1 = c3
             else:
-                c1 = ''
+                c1 = u''
         roman += c1
         n += 1
     return roman

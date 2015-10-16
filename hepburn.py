@@ -255,7 +255,7 @@ def normalize(s):
             elif c3 in u'bcdfghjklmnpqrstvwxyz':
                 c1 = c3
             else:
-                c1 = ''
+                c1 = u''
         roman += c1
         n += 1
     return roman
